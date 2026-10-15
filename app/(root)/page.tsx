@@ -1,9 +1,7 @@
+import { redirect } from "next/navigation";
+import { auth } from "@/auth";
 
-
-export default function Home() {
-  return (
-   <>
-   <h1 className="text-2xl">HOME</h1>
-   </> 
-  );
+export default async function HomePage() {
+  const session = await auth();
+  redirect(session?.user ? "/dashboard" : "/login");
 }
